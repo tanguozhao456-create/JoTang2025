@@ -1,20 +1,19 @@
 ## 概念
-
-在预测房价的模型中，模型的输出是什么？它是连续的还是离散的？  
+### 在预测房价的模型中，模型的输出是什么？它是连续的还是离散的？  
 ①房价的数值  
 ②连续的  
 
-什么是“线性回归”？试着用一句话描述它是如何工作的。解释你在高中学习的“最小二乘法”的原理。  
+### 什么是“线性回归”？试着用一句话描述它是如何工作的。解释你在高中学习的“最小二乘法”的原理。  
 ①寻找一条最佳拟合直线（或平面），使得所有数据点到这条直线的垂直距离的平方和最小，从而用一个或多个输入特征来预测一个连续的输出值。  
 ②用求导等方式使预测值的残差平方和最小
 
-评价一个回归模型的好坏，常用的一个指标有什么？
+### 评价一个回归模型的好坏，常用的一个指标有什么？  
 损失函数的值
 
 ## 代码实操
 本题使用 Python 和 scikit-learn 库。
 
-加载 scikit-learn 自带的加州房价数据集 15。查看数据的特征形状和目标值形状。
+### 加载 scikit-learn 自带的加州房价数据集 15。查看数据的特征形状和目标值形状。
 ```
 california = fetch_california_housing()
 X = california.data
@@ -28,7 +27,7 @@ print("目标值形状:", y.shape)
 目标值形状: (20640,)
 ```
 
-使用线性回归模型训练数据，并将数据集拆分为训练集和测试集。
+### 使用线性回归模型训练数据，并将数据集拆分为训练集和测试集。
 ```
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -38,7 +37,7 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 ```
 
-在测试集上进行预测，并计算模型的均方误差（MSE）和决定系数（R²）。
+### 在测试集上进行预测，并计算模型的均方误差（MSE）和决定系数（R²）。
 ```
 mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
@@ -51,7 +50,7 @@ print(f"决定系数(R²): {r2:.4f}")
 ```
 
 
-尝试绘制一个散点图，x轴是真实房价，y轴是模型预测的房价。如果预测完美，所有点会形成一条什么样的线？
+### 尝试绘制一个散点图，x轴是真实房价，y轴是模型预测的房价。如果预测完美，所有点会形成一条什么样的线？
 ```
 plt.rcParams['font.sans-serif'] = ['SimHei']
 plt.figure(figsize=(10, 6))
@@ -68,18 +67,18 @@ plt.show()
 
 ## 概念
 
-分类任务的输出是什么？它和回归任务的输出有什么本质不同？  
+### 分类任务的输出是什么？它和回归任务的输出有什么本质不同？  
 ①离散的概率值  
 ②分类任务的输出用于判断质，回归任务的输出是连续的值，用于预测量的大小  
 
-什么是“二分类”问题？什么是“多分类”问题？请分别举一个例子。怎么实现二分类和多分类？  
+### 什么是“二分类”问题？什么是“多分类”问题？请分别举一个例子。怎么实现二分类和多分类？  
 ①二分类：指将样本分为两个互斥类别的分类任务。  
 ②多分类：指将样本分为三个或更多互斥类别的分类任务。  
 ③  
 垃圾邮件检测（二分类）：首先收集大量邮件，人工标记为"垃圾邮件"或"正常邮件"，然后提取邮件特征（如关键词频率、发件人信誉、链接数量等），再构建逻辑回归模型（输入层是1个神经元，使用Sigmoid激活函数）得到是"垃圾邮件"的概率  
 手写数字识别（多分类）：首先收集手写数字图片并标记对应数字，然后将图片转化为特征向量，再构建神经网络模型（输入层是10个神经元，使用Softmax激活函数）得到10个概率值，选择最高的概率作为预测结果  
 
-评价分类模型指标有哪些？  
+### 评价分类模型指标有哪些？  
 ①二分类：准确率、召回率、F1  
 ②多分类：Micro F1、Macro F1
 
@@ -87,7 +86,8 @@ plt.show()
 ### Iris
 同样使用 Python 和 scikit-learn。
 
-加载 scikit-learn 自带的鸢尾花（Iris）数据集。这是一个什么类型的分类问题（二分类/多分类）？数据集里有多少个类别？  
+加载 scikit-learn 自带的鸢尾花（Iris）数据集。
+#### 这是一个什么类型的分类问题（二分类/多分类）？数据集里有多少个类别？  
 多分类问题；有三个类别
 ```
 num_samples = 100
@@ -112,7 +112,7 @@ torch.Size([150])
 tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,2, 2, 2, 2, 2, 2])
 ```
 
-使用逻辑回归（Logistic Regression）模型训练数据，并划分训练集和测试集。
+#### 使用逻辑回归（Logistic Regression）模型训练数据，并划分训练集和测试集。
 ```
 # 划分训练集、测试集
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 42)
@@ -177,7 +177,7 @@ for epoch in range(epochs):
 
 ```
 
-在测试集上进行预测，并计算模型的准确率（Accuracy）。
+#### 在测试集上进行预测，并计算模型的准确率（Accuracy）。
 ```
 print(f'训练准确度: {train_acc.item()*100:.2f}%')
 print(f'测试准确度: {test_acc.item()*100:.2f}%')
@@ -187,7 +187,7 @@ print(f'测试准确度: {test_acc.item()*100:.2f}%')
 测试准确度: 100.00%
 ```
 
-打印模型的混淆矩阵（Confusion Matrix），并尝试说明矩阵中数字的含义。
+#### 打印模型的混淆矩阵（Confusion Matrix），并尝试说明矩阵中数字的含义。
 ```
 # 转换为numpy数组
 y_true = y_test.numpy()
@@ -212,18 +212,7 @@ print(cm)
 背景介绍
 泰坦尼克号生存预测数据集是一个经典的二分类问题数据集，它包含了泰坦尼克号乘客的各种属性，如舱位等级、年龄、性别、船票价格、登船港口、是否携带亲属等，以及乘客是否在灾难中幸存。本题要求使用PyTorch框架来构建和训练一个神经网络模型，以预测乘客是否生还。
 
-数据集：Titanic 1。
-
-题目要求
-使用PyTorch框架构建一个神经网络模型
-
-对数据进行预处理，包括归一化、处理缺失值等。
-
-训练模型与并且进行分类预测
-
-评估模型性能
-
-数据分析：  
+#### 数据分析：  
 PassengerId => 乘客ID  
 Pclass => 乘客等级(1/2/3等舱位)  
 Name => 乘客姓名  
@@ -277,3 +266,81 @@ min       1.000000    0.000000    1.000000    0.420000    0.000000    0.000000  
 75%     668.500000    1.000000    3.000000   38.000000    1.000000    0.000000   31.000000
 max     891.000000    1.000000    3.000000   80.000000    8.000000    6.000000  512.329200
 ```
+
+#### 题目要求
+#### 使用PyTorch框架构建一个神经网络模型
+```
+class TitanicModel(nn.Module):
+    def __init__(self, input_size):
+        super(TitanicModel, self).__init__()
+        self.fc1 = nn.Linear(input_size, 64)
+        self.fc2 = nn.Linear(64, 32)
+        self.fc3 = nn.Linear(32, 1)
+        self.relu = nn.ReLU()
+        self.sigmoid = nn.Sigmoid()
+        self.dropout = nn.Dropout(0.2)
+        
+    def forward(self, x):
+        x = self.relu(self.fc1(x))
+        x = self.dropout(x)
+        x = self.relu(self.fc2(x))
+        x = self.dropout(x)
+        x = self.sigmoid(self.fc3(x))
+        return x
+```
+
+#### 对数据进行预处理，包括归一化、处理缺失值等。
+```
+# 训练集预处理
+train = train.dropna(subset=['Embarked'])
+train['Age'] = train.groupby('Sex')['Age'].transform(lambda x: x.fillna(x.mode()[0]))
+Sex_dummies = pd.get_dummies(train['Sex'], prefix= 'Sex', dtype=int)
+Embarked_dummies = pd.get_dummies(train['Embarked'], prefix= 'Embarked', dtype=int)
+train = train.drop('PassengerId', axis=1)
+train = train.drop('Name', axis=1)
+train = train.drop('Cabin', axis=1)
+train = train.drop('Ticket', axis=1)
+train = train.drop('Sex', axis=1)
+train = train.drop('Embarked', axis=1)
+train = pd.concat([train, Sex_dummies, Embarked_dummies], axis=1)
+print(train.info())
+
+scaler = preprocessing.StandardScaler()
+train['Age'] = scaler.fit_transform(train[['Age']])
+train['Fare'] = scaler.fit_transform(train[['Fare']])
+print(train)
+
+# 测试集预处理
+test = pd.read_csv('test.csv')
+test = test.dropna(subset=['Fare'])
+test1 = test.dropna(subset=['Fare'])
+test['Age'] = test.groupby('Sex')['Age'].transform(lambda x: x.fillna(x.mode()[0]))
+Sex_dummies = pd.get_dummies(test['Sex'], prefix= 'Sex', dtype=int)
+Embarked_dummies = pd.get_dummies(test['Embarked'], prefix= 'Embarked', dtype=int)
+test = test.drop('PassengerId', axis=1)
+test = test.drop('Name', axis=1)
+test = test.drop('Cabin', axis=1)
+test = test.drop('Ticket', axis=1)
+test = test.drop('Sex', axis=1)
+test = test.drop('Embarked', axis=1)
+test = pd.concat([test, Sex_dummies, Embarked_dummies], axis=1)
+
+scaler = preprocessing.StandardScaler()
+test['Age'] = scaler.fit_transform(test[['Age']])
+test['Fare'] = scaler.fit_transform(test[['Fare']])
+```
+
+#### 训练模型与并且进行分类预测
+
+#### 评估模型性能
+```
+模型评估结果:
+准确率: 0.8427
+精确率: 0.9107
+召回率: 0.6892
+F1分数: 0.7846
+混淆矩阵:
+[[99  5]
+ [23 51]]
+```
+
