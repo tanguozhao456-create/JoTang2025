@@ -135,7 +135,7 @@ for epoch in range(num_epochs):
     
     train_loss /= len(train_loader)
     val_loss /= len(val_loader)
-    val_accuracy = correct / total  # 计算验证准确率
+    val_accuracy = correct / total 
     
     # 每10个epoch打印一次损失和准确率
     if (epoch+1) % 10 == 0:
