@@ -6,20 +6,19 @@ torch.manual_seed(123)
 class CNN(nn.Module):
     def __init__(self):
         super(CNN, self).__init__()
-        self.conv1 = nn.Conv2d(in_channels=3 , out_channels=16 , kernel_size=7 , padding=3 ) # Conv 1 layer
-        self.bn1 = nn.BatchNorm2d(16) # BatchNorm layer
-        self.conv2 = nn.Conv2d(in_channels=16 , out_channels=32 , kernel_size=3 , padding=1 ) # Conv 2 layer
-        self.bn2 = nn.BatchNorm2d(32) # BatchNorm layer
-        self.conv3 = nn.Conv2d(in_channels=32 , out_channels=48 , kernel_size=3 , padding=1 ) # Conv 3 layer
-        self.bn3 = nn.BatchNorm2d(48) # BatchNorm layer
-        self.conv4 = nn.Conv2d(in_channels=48 , out_channels=64 , kernel_size=3 , padding=1 ) # Conv 4 layer
-        self.bn4 = nn.BatchNorm2d(64) # BatchNorm layer
-        self.conv5 = nn.Conv2d(in_channels=64 , out_channels=80 , kernel_size=3 , padding=1 ) # Conv 5 layer
-        self.relu = nn.ReLU(inplace=True) # ReLU layer
-        self.maxpool = nn.MaxPool2d(kernel_size=2 , stride=2) # MaxPool layer
-        self.avgpool = nn.AvgPool2d(kernel_size=2 , stride=2) # Avgpool layer
-        self.fc = nn.Linear(80 * 8 * 8, 10) # Linear layer
-    
+        self.conv1 = nn.Conv2d(in_channels=3 , out_channels=16 , kernel_size=7 , padding=3 )
+        self.bn1 = nn.BatchNorm2d(16) 
+        self.conv2 = nn.Conv2d(in_channels=16 , out_channels=32 , kernel_size=3 , padding=1 )
+        self.bn2 = nn.BatchNorm2d(32) 
+        self.conv3 = nn.Conv2d(in_channels=32 , out_channels=48 , kernel_size=3 , padding=1 )
+        self.bn3 = nn.BatchNorm2d(48) 
+        self.conv4 = nn.Conv2d(in_channels=48 , out_channels=64 , kernel_size=3 , padding=1 ) 
+        self.bn4 = nn.BatchNorm2d(64) 
+        self.conv5 = nn.Conv2d(in_channels=64 , out_channels=80 , kernel_size=3 , padding=1 ) 
+        self.relu = nn.ReLU(inplace=True) 
+        self.maxpool = nn.MaxPool2d(kernel_size=2 , stride=2)
+        self.avgpool = nn.AvgPool2d(kernel_size=2 , stride=2) 
+        self.fc = nn.Linear(80 * 8 * 8, 10)
     def forward(self, x, intermediate_outputs=False):
         # TODO: 按照题目描述中的示意图计算前向传播的输出，如果 intermediate_outputs 为 True，也返回各个卷积层的输出。
         x = self.conv1(x)
